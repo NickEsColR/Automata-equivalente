@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>automata-equivalente</name>
+    </assembly>
+    <members>
+        <member name="T:automata_equivalente.model.Conversor">
+            <summary>
+            Class <c>Conversor</c> manage the automata and create its equivalent table.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.model.Conversor.#ctor">
+            <summary>
+            This constructor create the conversor manager and initializa the mealy and moore attributtes.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.model.Conversor.CreateMealy(System.String[],System.String[])">
+            <summary>
+            This method create a Mealy entity using its constructor.
+            </summary>
+            <param name="sigma">Is the alphabet for the automata</param>
+            <param name="rows">All the transitions of all states, having in the first 
+            position the state name</param>
+        </member>
+        <member name="M:automata_equivalente.model.Conversor.CreateMooore(System.String[],System.String[],System.String[])">
+            <summary>
+            This method create a Moore entity using its constructor.
+            </summary>
+            <param name="sigma">Is the alphabet for the automata</param>
+            <param name="rows">All the transitions of all states, having in the first 
+            position the state name</param>
+            <param name="outputs">The output of all states order according to the states</param>
+        </member>
+        <member name="M:automata_equivalente.model.Conversor.GenerateEquivalent">
+            <summary>
+            This method generate an equivalent states table of the automata previous given
+            </summary>
+            <returns>A matrix that's the equivalent states table </returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:automata_equivalente.model.Conversor.clear">
+            <summary>
+            This method clean the data for create a new equivalent states table.
+            </summary>
+        </member>
+        <member name="T:automata_equivalente.model.Mealy">
+            <summary>
+            Class <c>Mealy</c> create the states' table of a mealy automate to use.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.#ctor(System.String[],System.String[])">
+            <summary>
+            This constructor create de states'table with (<paramref name="sigma"/>,
+            <paramref name="rows"/>).
+            </summary>
+            <param name="sigma">Is the alphabet for the automata</param>
+            <param name="rows">All the transitions of all states, having in the first 
+            position the state name</param>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.ReachableStates">
+            <summary>
+            This method returns the states reachable from the initial state.
+            </summary>
+            <returns>A list with all reachable states</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.FirstPartition">
+            <summary>
+            This method returns the first partition using the reachable states.
+            </summary>
+            <returns>The first partition of the automata</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.GetTransitions(System.String)">
+            <summary>
+            This method returns the transitions of a specific state<paramref name="state"/> in the table.
+            </summary>
+            <param name="state">is the state to look for its transitions</param>
+            <returns>The transitions of the given state</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.GetSigma">
+            <summary>
+            This method returns the alphabet of the automata.
+            </summary>
+            <returns>A list of alphabet collection of the automata</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.GeneratePartition(System.Collections.Generic.List{System.String})">
+            <summary>
+            This method generate partitions until the previous is the same of the new partition.
+            </summary>
+            <param name="partition">Is the previous partition use for create a new one</param>
+            <returns>The new partition that is equals of the receiving partition</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.GetPartitionOfState(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method returns the partition states that contains a specif state.
+            </summary>
+            <param name="state">The state that's looking for in the partition</param>
+            <param name="partitions">The list of partition to look for the state</param>
+            <returns>The states of a partition that contains the receiving state</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Mealy.PartitionsEquals(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            This method compare two partitions and check if they are equal.
+            </summary>
+            <param name="partition1">The first partition to be compared</param>
+            <param name="partition2">the second partition to be compared</param>
+            <returns>A bool that is true if the partitions are the same, otherwise is false</returns>
+        </member>
+        <member name="T:automata_equivalente.model.Moore">
+            <summary>
+            Class <c>Moore</c> create the states' table of a moore automate to use.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.#ctor(System.String[],System.String[],System.String[])">
+            <summary>
+            This constructor create de states'table with (<paramref name="sigma"/>,
+            <paramref name="rows"/>,<paramref name="outputs"/>).
+            </summary>
+            <param name="sigma">Is the alphabet for the automata</param>
+            <param name="rows">All the transitions of all states, having in the first 
+            position the state name</param>
+            <param name="outputs">The output of all states order according to the states</param>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.GetTransitions(System.String)">
+            <summary>
+            This method returns the transitions of a specific state<paramref name="state"/> in the table.
+            </summary>
+            <param name="state">is the state to look for its transitions</param>
+            <returns>The transitions of the given state</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.GetOutputOfState(System.String)">
+            <summary>
+            This method returns the output of a specific state<paramref name="state"/> in the table.
+            </summary>
+            <param name="state">is the state to look for its output</param>
+            <returns>The output of the given state</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.ReachableStates">
+            <summary>
+            This method returns the states reachable from the initial state.
+            </summary>
+            <returns>A list with all reachable states</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.FirstPartition">
+            <summary>
+            This method returns the first partition using the reachable states.
+            </summary>
+            <returns>The first partition of the automata</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.GetSigma">
+            <summary>
+            This method returns the alphabet of the automata.
+            </summary>
+            <returns>A list of alphabet collection of the automata</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.GetPartitionOfState(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method returns the partition states that contains a specif state.
+            </summary>
+            <param name="state">The state that's looking for in the partition</param>
+            <param name="partitions">The list of partition to look for the state</param>
+            <returns>The states of a partition that contains the receiving state</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.GeneratePartition(System.Collections.Generic.List{System.String})">
+            <summary>
+            This method generate partitions until the previous is the same of the new partition.
+            </summary>
+            <param name="partition">Is the previous partition use for create a new one</param>
+            <returns>The new partition that is equals of the receiving partition</returns>
+        </member>
+        <member name="M:automata_equivalente.model.Moore.PartitionsEquals(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            This method compare two partitions and check if they are equal.
+            </summary>
+            <param name="partition1">The first partition to be compared</param>
+            <param name="partition2">the second partition to be compared</param>
+            <returns>A bool that is true if the partitions are the same, otherwise is false</returns>
+        </member>
+        <member name="T:automata_equivalente.ui.EquivalentView">
+            <summary>
+            Class <c>EquivalentView</c> manage the window that shows the equivalent states table.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.ui.EquivalentView.#ctor(System.String[0:,0:],System.Boolean)">
+            <summary>
+            This constructor initizalize the window and send the creation of the table.
+            </summary>
+            <param name="table">A matrix with the equivalent states table</param>
+            <param name="isMoore">A bool that says true if its a moore automata</param>
+        </member>
+        <member name="M:automata_equivalente.ui.EquivalentView.generateTable(System.String[0:,0:],System.Boolean)">
+            <summary>
+            This method create the data grid view that shows the equivalent states table.
+            </summary>
+            <param name="table">A matrix with the equivalent states table</param>
+            <param name="isMoore">A bool that says true if its a moore automata</param>
+        </member>
+        <member name="F:automata_equivalente.ui.EquivalentView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.ui.EquivalentView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:automata_equivalente.ui.EquivalentView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:automata_equivalente.MainView">
+            <summary>
+            Class <c>MainView</c> manage the window that create the states table to be minimized.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.MainView.#ctor">
+            <summary>
+            This constructor initialize the window and create the Conversor entity
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.MainView.MainView_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            This method ensure to close the equivalent window when the main window is closed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.rbMoore_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method manage the option of select the moore creation.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.rbMealy_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method manage the option of select the mealy creation.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.btnCreate_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method manage the creation of the state table.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.createTable">
+            <summary>
+            this method create a data grid view in order the user can see what is introduced.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.MainView.btnClear_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method clear all previously assigned in order to introduce a new automata.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.btnAddTransition_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method manage when the user add the transitions of a state
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:automata_equivalente.MainView.btnGenerate_Click(System.Object,System.EventArgs)">
+            <summary>
+            This method manage the generation of the equivalent states table.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:automata_equivalente.MainView.components">
+            <summary>
+            Variable del diseñador necesaria.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.MainView.Dispose(System.Boolean)">
+            <summary>
+            Limpiar los recursos que se estén usando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        </member>
+        <member name="M:automata_equivalente.MainView.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido de este método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:automata_equivalente.Program.Main">
+            <summary>
+            Punto de entrada principal para la aplicación.
+            </summary>
+        </member>
+        <member name="T:automata_equivalente.Properties.Resources">
+            <summary>
+              Clase de recurso fuertemente tipado para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:automata_equivalente.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:automata_equivalente.Properties.Resources.Culture">
+            <summary>
+              Invalida la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos usando esta clase de recursos fuertemente tipados.
+            </summary>
+        </member>
+    </members>
+</doc>
